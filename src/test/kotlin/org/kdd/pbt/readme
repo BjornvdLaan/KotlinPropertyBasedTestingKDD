@@ -1,0 +1,15 @@
+class PaymentSettlementServiceExampleTest : FeatureSpec({
+    feature("Sum of all balances should always be zero") {
+
+		scenario("Willem pays for all including himself") { ... }
+        scenario("Willem pays for all excluding himself") { ... }
+        scenario("Willem pays a negative amount for all including himself") { ... }
+        scenario("Willem pays a negative amount for all excluding himself") { ... }
+        scenario("Willem pays a decimal amount for all including himself") { ... }
+        scenario("Willem pays a negative decimal amount for all including himself") { ... }
+        scenario("Willem pays a big amount for all excluding himself") { ... }
+        scenario("Willem pays zero euro for all including himself") { ... }
+        scenario("Willem pays zero euro for all excluding himself") { ... }
+
+    }
+}

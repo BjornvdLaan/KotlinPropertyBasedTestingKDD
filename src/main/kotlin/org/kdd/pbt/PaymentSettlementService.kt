@@ -8,13 +8,15 @@ class PaymentSettlementService {
     val balances: MutableMap<Person, Euro> = mutableMapOf()
 
     fun settlePayment(paidBy: Person, paidFor: List<Person>, totalAmount: Euro) {
-        val totalMembers = paidFor.size
-        val amountPerMember = totalAmount / totalMembers
-
+        // 1. Increase balance of person who paid
         balances[paidBy] = balances.getOrDefault(paidBy, 0.0f) + totalAmount
 
+        // 2. Calculate amount per person
+        val amountPerPerson = totalAmount / paidFor.size
+
+        // 3. Decrease balance of persons who were paid for
         paidFor.forEach { member ->
-            balances[member] = balances.getOrDefault(member, 0.0f) - amountPerMember
+            balances[member] = balances.getOrDefault(member, 0.0f) - amountPerPerson
         }
     }
 }

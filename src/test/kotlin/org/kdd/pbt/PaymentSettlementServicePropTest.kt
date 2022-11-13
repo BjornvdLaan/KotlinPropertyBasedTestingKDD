@@ -12,23 +12,25 @@ class PaymentSettlementServicePropTest : FeatureSpec({
         checkAll(
             Arb.numericFloat(min = 0f, max = 100f), Arb.Companion.int(2..4)
         ) { totalAmount, numberOfPersons ->
+
             val roundedAmount = String.format("%.2f", totalAmount).toFloat()
-
-            val firstNameArb = Arb.firstName()
-            val ageArb = Arb.positiveInt(max = 92)
-            val emailArb = Arb.email()
-
-            val payees = (1..numberOfPersons)
-                .map { Person(firstNameArb.next().toString(), ageArb.next(), emailArb.next()) }
-            val payer = payees.random()
+            val persons = (1..numberOfPersons)
+                .map {
+                    Person(
+                        name = Arb.firstName().next().toString(),
+                        age = Arb.positiveInt(max = 92).next(),
+                        email = Arb.email().next()
+                    )
+                }
 
             val settleService = PaymentSettlementService()
-            settleService.settlePayment(payer, payees, roundedAmount)
+            settleService.settlePayment(persons.random(), persons, roundedAmount)
 
             val sumOfBalances = settleService.balances.values
                 .reduce { sum, balance -> sum + balance }
 
             sumOfBalances shouldBe 0f
+
         }
     }
 
