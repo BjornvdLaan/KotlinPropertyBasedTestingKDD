@@ -6,12 +6,12 @@ import io.kotest.matchers.shouldBe
 class PaymentSettlementServiceExampleTest : FeatureSpec({
     feature("Sum of all balances should always be zero") {
         scenario("Willem pays for all including himself") {
-            // Given...
+            // Given some examples...
             val willem = Person("Willem Wever", 34, "willem.wever@loveskotlin.nl")
             val henk = Person("Henk the Tank", 54, "henkietenkie@kotlindevday.nl")
             val jan = Person("Jan van de Niltok", 23, "janvandeniltok@kotlinrocks.nl")
 
-            // When...
+            // When we call the method...
             val settleService = PaymentSettlementService()
             settleService.settlePayment(
                 paidBy = willem,
@@ -19,7 +19,7 @@ class PaymentSettlementServiceExampleTest : FeatureSpec({
                 totalAmount = 90f
             )
 
-            // Then...
+            // Then we expect certain stuff...
             val sumOfBalances = settleService.balances.values
                 .reduce { sum, balance -> sum + balance }
             sumOfBalances shouldBe 0f
@@ -43,7 +43,7 @@ class PaymentSettlementServiceExampleTest : FeatureSpec({
             sumOfBalances shouldBe 0f
         }
 
-        scenario("Willem pays for all excluding himself") {
+        scenario("Willem pays for all excluding himself again") {
             val willem = Person("Willem Wever", 34, "willem.wever@loveskotlin.nl")
             val henk = Person("Henk the Tank", 54, "henkietenkie@kotlindevday.nl")
             val jan = Person("Jan van de Niltok", 23, "janvandeniltok@kotlinrocks.nl")

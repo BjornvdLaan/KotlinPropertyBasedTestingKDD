@@ -1,4 +1,4 @@
-class PaymentSettlementServiceExampleTest : FeatureSpec({
+class PaymentSettlementServiceTest : FeatureSpec({
     feature("Sum of all balances should always be zero") {
 
 		scenario("Willem pays for all including himself") { ... }
@@ -13,3 +13,38 @@ class PaymentSettlementServiceExampleTest : FeatureSpec({
 
     }
 }
+
+Testing started at 10:42 ...
+Property test failed for inputs
+
+0) 77.93034f
+1) 4
+
+Caused by io.kotest.assertions.AssertionFailedError: expected:<0.0f> but was:<3.8146973E-6f> at
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invokeSuspend(PaymentSettlementServicePropTest.kt:34)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invoke(PaymentSettlementServicePropTest.kt)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invoke(PaymentSettlementServicePropTest.kt)
+  io.kotest.property.internal.ProptestKt$proptest$8$2.invokeSuspend(proptest.kt:122)
+
+Attempting to shrink arg 77.93034f
+Shrink #1: 77.9303f fail
+Shrink #2: 77.93f fail
+Shrink #3: 77.9f fail
+Shrink #4: 77.0f pass
+Shrink result (after 4 shrinks) => 77.9f
+
+Caused by io.kotest.assertions.AssertionFailedError: expected:<0.0f> but was:<3.8146973E-6f> at
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invokeSuspend(PaymentSettlementServicePropTest.kt:34)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invoke(PaymentSettlementServicePropTest.kt)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invoke(PaymentSettlementServicePropTest.kt)
+  io.kotest.property.internal.ShrinkfnsKt$shrinkfn$2$1$smallestA$1.invokeSuspend(shrinkfns.kt:36)
+
+Attempting to shrink arg 4
+Shrink #1: 0 fail
+Shrink result (after 1 shrinks) => 0
+
+Caused by java.util.NoSuchElementException: Collection is empty. at
+  kotlin.collections.CollectionsKt___CollectionsKt.random(_Collections.kt:558)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invokeSuspend(PaymentSettlementServicePropTest.kt:29)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invoke(PaymentSettlementServicePropTest.kt)
+  org.kdd.pbt.PaymentSettlementServicePropTest$1$1$1.invoke(PaymentSettlementServicePropTest.kt)
